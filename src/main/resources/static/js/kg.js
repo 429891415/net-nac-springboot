@@ -106,12 +106,12 @@ function startKG(links) {
         .data(force.nodes())
         .enter()
         .append("text")
-        .attr("dy", ".35em")
+        .attr("dy", ".50em")
         .attr("text-anchor", "middle")
         .style('fill',function(node){
             var color;
             var link=links[node.index];
-            color="#A254A2";
+            color="#000000";
             return color;
         }).attr('x',function(d){
             var re_en = /[a-zA-Z]+/g;

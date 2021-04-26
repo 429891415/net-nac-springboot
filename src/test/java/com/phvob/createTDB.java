@@ -1,9 +1,17 @@
 package com.phvob;
 
+import com.phvob.dao.AccessDao;
+import com.phvob.dao.AccessDaoImpl;
+import com.phvob.dao.HostDao;
+import com.phvob.dao.HostDaoImpl;
 import com.phvob.util.TDBConnection;
 import com.phvob.util.OwlToTdb;
 import org.apache.jena.query.*;
 import org.junit.jupiter.api.Test;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * @author phvob
@@ -43,6 +51,8 @@ public class createTDB {
                     "}";
             QueryExecution qExec = QueryExecutionFactory.create(spk, dataset);
             ResultSet rs = qExec.execSelect();
+            //ResultSetFormatter.out(rs) ;
+
             while(rs.hasNext()){
                 QuerySolution qs = rs.next();
                 String res = qs.get("?sub").toString();
@@ -54,4 +64,15 @@ public class createTDB {
             dataset.end();
         }
     }
+    @Test
+    public void queryAllHostTest(){
+        HostDao hostDao = new HostDaoImpl();
+        System.out.println(hostDao.queryAllHost());
+    }
+    @Test
+    public void queryAllAccessTest(){
+        AccessDao accessDao = new AccessDaoImpl();
+        System.out.println(accessDao.queryAllAccess());
+    }
+
 }

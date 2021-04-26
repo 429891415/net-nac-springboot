@@ -234,6 +234,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#AccessControl"/>
+        <untitled-ontology-9:hasControl rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#Deny"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#Deny -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#Deny">
@@ -246,7 +255,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#FROM_host_166.112.3.10_TO_host_116.112.3.13">
         <rdf:type rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#Access"/>
-        <untitled-ontology-9:hasControl rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL4"/>
+        <untitled-ontology-9:hasAccessControl rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL4"/>
         <untitled-ontology-9:hasObject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#116.112.3.13"/>
         <untitled-ontology-9:hasSubject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#166.112.3.10"/>
     </owl:NamedIndividual>
@@ -271,6 +280,17 @@
         <untitled-ontology-9:hasAccessControl rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL2"/>
         <untitled-ontology-9:hasObject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#166.112.3.12"/>
         <untitled-ontology-9:hasSubject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#166.112.3.10"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#FROM_host_219.226.127.16_TO_host_116.112.3.10 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#FROM_host_219.226.127.16_TO_host_116.112.3.10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#Access"/>
+        <untitled-ontology-9:hasAccessControl rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#ACL5"/>
+        <untitled-ontology-9:hasObject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#166.112.3.10"/>
+        <untitled-ontology-9:hasSubject rdf:resource="http://www.semanticweb.org/cuibo/ontologies/2021/3/untitled-ontology-9#219.226.127.16"/>
     </owl:NamedIndividual>
     
 

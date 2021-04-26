@@ -11,4 +11,3 @@ public class NetNacSpringbootApplication {
     }
 
 }
-//约定大于配置

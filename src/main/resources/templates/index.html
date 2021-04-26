@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,18 +11,38 @@
     <title>知识图谱可视化</title>
 </head>
 
-<body>
-    <div id="mulu" style="width: 20%;height: 90%; border:1px solid #F00 ; float: left;position:absolute;left:7%;top:5%;"></div>
+<body onload="load()">
+    <div id="mulu" style="width: 20%;height: 90%; border:1px solid #F00 ; float: left;position:absolute;left:7%;top:5%;">
+
+    </div>
     <div id="container" style="width: 60%;height: 90%; border:1px solid #F00 ; float: right;position:absolute;left:32%;top:5%;"></div>
 </body>
 <script>
-    var links = [{
-        source: '10.1.1.121',
-        target: '10.1.1.111',
-        type: 'permit',
-        rela: 'Rule32'
-    }];
+    var links = [];
+
+    function load() {
+        $.ajax({
+            type: "GET",
+            url: "/getAllAccess",
+            data: {
+
+            },
+            dataType: "json",
+            success: function(data) {
+                //[{"name":"FROM_host_166.112.3.10_TO_host_116.112.3.13","subject":"166.112.3.10","object":"116.112.3.13","accessControl":{"name":"ACL4","control":"Deny"}}]
+                for(var i = 0;i < data.length;++i){
+                    links.push({source: data[i].subject,target: data[i].object,type: data[i].accessControl.control,rela:data[i].accessControl.name});
+                }
+                console.log(links);
+                startKG(links);
+            },
+            error:function (err) {
+                alert("error");
+            }
+        });
+
+    }
     //var node = {source: '10.1.1.111',target: '10.1.2.121',type: 'permit',rela: 'Rule33'}
     //links.push(node)
-    startKG(links);
+
 </script>

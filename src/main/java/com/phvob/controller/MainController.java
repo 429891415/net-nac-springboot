@@ -1,7 +1,12 @@
 package com.phvob.controller;
 
+import com.phvob.dao.AccessDaoImpl;
+import com.phvob.dao.HostDaoImpl;
+import com.phvob.pojo.Access;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author phvob
@@ -13,5 +18,15 @@ public class MainController {
     @GetMapping("/index")
     public String index(){
         return "index";
+    }
+    @GetMapping("/getAllHost")
+    @ResponseBody
+    public List<String> getAllHost(){
+        return new HostDaoImpl().queryAllHost();
+    }
+    @GetMapping("/getAllAccess")
+    @ResponseBody
+    public List<Access> getAllAccess(){
+        return new AccessDaoImpl().queryAllAccess();
     }
 }
