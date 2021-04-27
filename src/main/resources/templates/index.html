@@ -8,15 +8,25 @@
     <script src="/js/d3.v3.min.js"></script>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/css/kg.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Resource style -->
+    <script src="/js/modernizr.js"></script>
+    <!-- Modernizr -->
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
     <title>知识图谱可视化</title>
 </head>
 
 <body onload="load()">
-    <div id="mulu" style="width: 20%;height: 90%; border:1px solid #F00 ; float: left;position:absolute;left:7%;top:5%;">
+    <div id="mulu" style="width: 20%;height: 90%; ; float: left;position:absolute;left:7%;top:5%;">
+        <ul class="cd-accordion-menu animated">
 
+        </ul>
     </div>
-    <div id="container" style="width: 60%;height: 90%; border:1px solid #F00 ; float: right;position:absolute;left:32%;top:5%;"></div>
+    <div id="container" style="width: 60%;height: 90%; ; float: right;position:absolute;left:32%;top:5%;box-shadow: 0 4px 40px #000000;"></div>
 </body>
+<script src="/js/main.js"></script>
 <script>
     var links = [];
     //node = {source: '10.1.1.0/24',stype:"NetWork",target: '10.1.2.121',ttype:"Host",type: 'Permit',rela: 'ACL6'};

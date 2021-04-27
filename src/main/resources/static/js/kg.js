@@ -51,13 +51,13 @@ function startKG(links) {
         .style("stroke",function(d){
             //console.log(JSON.stringify(d))
             var lineColor = "#000000";
-            if(d.type == "Deny"&& lineColor != null&&lineColor!="") lineColor="#c71515";
-            else if(d.type == "Permit" && lineColor != null&&lineColor!="")lineColor = "#00c71d";
+            if(d.type == "Deny"&& lineColor != null&&lineColor!="") lineColor="#ff0000";
+            else if(d.type == "Permit" && lineColor != null&&lineColor!="")lineColor = "#00ff28";
 
             return lineColor;
         })
         .style("pointer-events", "none")
-        .style("stroke-width",0.5)
+        .style("stroke-width",1)
         .attr("marker-end", "url(#resolved)" );
 
     var edges_text = svg.append("g").selectAll(".edgelabel")
@@ -88,15 +88,15 @@ function startKG(links) {
         .enter().append("circle")
         .style("fill",function(node){
             var color;
-            if(node.type == "Host") color="#F9EBF9";
-            else if(node.type == "NetWork")color="#a4cdff";
+            if(node.type == "Host") color="#96cdcd";
+            else if(node.type == "NetWork")color="#d8ffa5";
             else color = "#FFFFFF"
             return color;
         })
         .style('stroke',function(node){
             var color;
-            if(node.type == "Host") color="#A254A2";
-            else if(node.type == "NetWork")color="#004aa7";
+            if(node.type == "Host") color="#a3f3e9";
+            else if(node.type == "NetWork")color="#8aff58";
             else color = "#000000"
             return color;
         })
@@ -104,9 +104,9 @@ function startKG(links) {
         .on("click",function(node){
             edges_line.style("stroke-width",function(line){
                 if(line.source.name==node.name){
-                    return 4;
+                    return 5;
                 }else{
-                    return 0.5;
+                    return 1;
                 }
             });
         })
@@ -147,7 +147,7 @@ function startKG(links) {
         .data(force.nodes())
         .enter()
         .append("text")
-        .attr("dy", ".50em")
+        .attr("dy", ".65em")
         .attr("text-anchor", "middle")
         .style('fill',function(node){
             var color;

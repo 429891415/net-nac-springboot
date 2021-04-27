@@ -84,7 +84,7 @@ public class TestKlass {
     @Test
     public void queryHostByNetWork(){
         NetWorkDao netWorkDao = new NetWorkDaoImpl();
-        System.out.println(netWorkDao.queryHostByNetWork(""));
+        System.out.println(netWorkDao.queryHostByNetWork("202.206.208.0/20"));
     }
     @Test
     public void queryAccessByHost(){
