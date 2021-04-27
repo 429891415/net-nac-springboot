@@ -19,11 +19,12 @@
 </body>
 <script>
     var links = [];
-
+    //node = {source: '10.1.1.0/24',stype:"NetWork",target: '10.1.2.121',ttype:"Host",type: 'Permit',rela: 'ACL6'};
+    //links.push(node);
     function load() {
         $.ajax({
             type: "GET",
-            url: "/getAllAccess",
+            url: "/getAllHostAccess",
             data: {
 
             },
@@ -31,9 +32,16 @@
             success: function(data) {
                 //[{"name":"FROM_host_166.112.3.10_TO_host_116.112.3.13","subject":"166.112.3.10","object":"116.112.3.13","accessControl":{"name":"ACL4","control":"Deny"}}]
                 for(var i = 0;i < data.length;++i){
-                    links.push({source: data[i].subject,target: data[i].object,type: data[i].accessControl.control,rela:data[i].accessControl.name});
+                    links.push({
+                        source: data[i].subject,
+                        stype: data[i].stype,
+                        target: data[i].object,
+                        ttype: data[i].otype,
+                        type: data[i].accessControl.control,
+                        rela:data[i].accessControl.name
+                    });
                 }
-                console.log(links);
+                //console.log(links);
                 startKG(links);
             },
             error:function (err) {
@@ -42,7 +50,5 @@
         });
 
     }
-    //var node = {source: '10.1.1.111',target: '10.1.2.121',type: 'permit',rela: 'Rule33'}
-    //links.push(node)
 
 </script>

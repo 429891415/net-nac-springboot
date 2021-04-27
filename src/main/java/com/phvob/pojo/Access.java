@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 public class Access {
     String name;
     String subject;
+    String stype;
     String object;
+    String otype;
     AccessControl accessControl;
 }

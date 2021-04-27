@@ -1,11 +1,9 @@
 package com.phvob.controller;
 
-import com.phvob.dao.AccessDaoImpl;
-import com.phvob.dao.HostDaoImpl;
+import com.phvob.daoimpl.AccessDaoImpl;
+import com.phvob.daoimpl.HostDaoImpl;
+import com.phvob.daoimpl.NetWorkDaoImpl;
 import com.phvob.pojo.Access;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,21 +26,4 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/getAllHost")
-    @ResponseBody
-    public List<String> getAllHost(){
-        return new HostDaoImpl().queryAllHost();
-    }
-
-    @GetMapping("/getAllAccess")
-    @ResponseBody
-    public List<Access> getAllAccess(){
-        return new AccessDaoImpl().queryAllAccess();
-    }
-
-    @GetMapping("/getAllNetWork")
-    @ResponseBody
-    public List<Access> getAllNetWork(){
-        return new AccessDaoImpl().queryAllAccess();
-    }
 }

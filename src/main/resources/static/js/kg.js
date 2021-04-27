@@ -4,8 +4,8 @@ function startKG(links) {
 
     links.forEach(function(link)
     {
-        link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
-        link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+        link.source = nodes[link.source] || (nodes[link.source] = {name: link.source,type:link.stype});
+        link.target = nodes[link.target] || (nodes[link.target] = {name: link.target,type:link.ttype});
     });
 
     var width = 1154,
@@ -15,7 +15,7 @@ function startKG(links) {
         .nodes(d3.values(nodes))
         .links(links)
         .size([width, height])
-        .linkDistance(250)
+        .linkDistance(320)
         .charge(-1500)
         .on("tick", tick)
         .start();
@@ -49,8 +49,11 @@ function startKG(links) {
             'class':'edgepath',
             'id':function(d,i) {return 'edgepath'+i;}})
         .style("stroke",function(d){
-            var lineColor;
-            lineColor="#B43232";
+            //console.log(JSON.stringify(d))
+            var lineColor = "#000000";
+            if(d.type == "Deny"&& lineColor != null&&lineColor!="") lineColor="#c71515";
+            else if(d.type == "Permit" && lineColor != null&&lineColor!="")lineColor = "#00c71d";
+
             return lineColor;
         })
         .style("pointer-events", "none")
@@ -71,6 +74,13 @@ function startKG(links) {
     edges_text.append('textPath')
         .attr('xlink:href',function(d,i) {return '#edgepath'+i})
         .style("pointer-events", "none")
+        .style("fill",function(d){
+            //console.log(JSON.stringify(d))
+            var edges_textColor = "#000000";
+            if(d.type == "Deny"&& edges_textColor != null&&edges_textColor!="") edges_textColor="#c71515";
+            else if(d.type == "Permit" && edges_textColor != null&&edges_textColor!="")edges_textColor = "#00c71d";
+            return edges_textColor;
+        })
         .text(function(d){return d.rela;});
 
     var circle = svg.append("g").selectAll("circle")
@@ -78,27 +88,58 @@ function startKG(links) {
         .enter().append("circle")
         .style("fill",function(node){
             var color;
-            var link=links[node.index];
-            color="#F9EBF9";
+            if(node.type == "Host") color="#F9EBF9";
+            else if(node.type == "NetWork")color="#a4cdff";
+            else color = "#FFFFFF"
             return color;
         })
         .style('stroke',function(node){
             var color;
-            var link=links[node.index];
-            color="#A254A2";
+            if(node.type == "Host") color="#A254A2";
+            else if(node.type == "NetWork")color="#004aa7";
+            else color = "#000000"
             return color;
         })
         .attr("r", 28)
-        .on("click",function(node)
-        {
+        .on("click",function(node){
             edges_line.style("stroke-width",function(line){
-                console.log(line);
-                if(line.source.name==node.name || line.target.name==node.name){
+                if(line.source.name==node.name){
                     return 4;
                 }else{
                     return 0.5;
                 }
             });
+        })
+        .on('dblclick',function(node){ //双击切换主结点
+            $.ajax({
+                type: "POST",
+                url: "/queryAccessByHost",
+                data: {
+                    host:node.name
+                },
+                dataType: "json",
+                success: function(data) {
+                    document.getElementById("container").innerHTML="";
+                    //[{"name":"FROM_host_166.112.3.10_TO_host_116.112.3.13","subject":"166.112.3.10","object":"116.112.3.13","accessControl":{"name":"ACL4","control":"Deny"}}]
+                    links = []
+                    for(var i = 0;i < data.length;++i){
+                        links.push({
+                            source: data[i].subject,
+                            stype: data[i].stype,
+                            target: data[i].object,
+                            ttype: data[i].otype,
+                            type: data[i].accessControl.control,
+                            rela:data[i].accessControl.name
+                        });
+                    }
+                    //console.log(links);
+                    startKG(links);
+                },
+                error:function (err) {
+                    alert("error");
+                }
+            });
+
         })
         .call(force.drag);
 

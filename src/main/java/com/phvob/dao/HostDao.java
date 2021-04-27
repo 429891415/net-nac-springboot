@@ -12,4 +12,5 @@ import java.util.List;
 public interface HostDao {
     //查询所有主机
     public List<String> queryAllHost();
+
 }

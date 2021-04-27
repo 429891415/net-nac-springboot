@@ -11,5 +11,6 @@ import java.util.List;
  */
 
 public interface AccessDao {
-    public List<Access> queryAllAccess();
+    public List<Access> queryAllHostAccess();
+    public List<Access> queryAccessByHost(String host);
 }
